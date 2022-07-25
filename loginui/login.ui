@@ -40,16 +40,16 @@ QPushButton#pushButton:pressed{
 }
 
 
-QPushButton#pushButton_2, #pushButton_3, #pushButton_4{
+QPushButton#pushButton_2, #pushButton_3, #pushButton_4, #pushButton_5{
 	background-color:rgba(0,0,0,0);
 	color:rgba(85,98,112,255);
 }
 
-QPushButton#pushButton_2:hover, #pushButton_3:hover, #pushButton_4:hover{
+QPushButton#pushButton_2:hover, #pushButton_3:hover, #pushButton_4:hover, #pushButton_5:hover{
 	color:rgba(131,96,53,255);
 }
 
-QPushButton#pushButton_2:pressed, #pushButton_3:pressed, #pushButton_4:pressed{
+QPushButton#pushButton_2:pressed, #pushButton_3:pressed, #pushButton_4:pressed, #pushButton_5:pressed{
 	padding-left:5px;
 	padding-top:5px;
 	color:rgba(91,88,53,255);
@@ -346,6 +346,25 @@ padding-bottom:7px;
     </property>
     <property name="text">
      <string>QCDL FACTORY</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>50</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Social Media Circled</family>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>ê</string>
     </property>
    </widget>
   </widget>
