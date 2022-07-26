@@ -235,7 +235,7 @@ class Ui_Interface(object):
         self.label_5.setText(_translate("Interface", "V1.0"))
 
 # { Button clicked function
-        self.pushButton_5.clicked.connect(lambda:Form.close())
+        self.pushButton_5.clicked.connect(lambda:Interface.close())
         self.pushButton_2.clicked.connect(lambda: webbrowser.open('https://www.facebook.com/f.hadikhoir'))
         self.pushButton_3.clicked.connect(lambda: webbrowser.open('https://www.youtube.com/c/HadiKIT'))
         self.pushButton_4.clicked.connect(lambda: webbrowser.open('https://github.com/HadiKhoirudin/qcdl_factory'))
