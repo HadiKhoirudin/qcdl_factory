@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 ## { begin import
-import sys, res
+import sys, res, mysql.connector, webbrowser
 ##   end import }
 
 class Ui_Form(object):
@@ -195,6 +195,35 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+# {Add login process
+    def login(self):
+        try:
+            print("Login .....")
+            username = self.lineEdit.text()
+            print("Username : ", username)
+            password = self.lineEdit_2.text()
+            print("Password : ", password)
+
+            mydb = mysql.connector.connect(host='localhost', database='test', user='root', password='')
+
+            mycursor = mydb.cursor()
+            query = "SELECT username,password from users where username " \
+                    "like '"+username + "'and password like '" \
+                    + password + "'"
+            mycursor.execute(query)
+            print("SQL : ", query)
+            result = mycursor.fetchone()
+
+            if result == None:
+               self.label_5.setText("Incorrect Username or Password")
+
+            else:
+                self.label_5.setText("You are logged in")
+
+        except mysql.connector.Error as e:
+            self.label_5.setText("Error! Can't connect to server.")
+# }
+
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
@@ -210,7 +239,11 @@ class Ui_Form(object):
         self.pushButton_5.setText(_translate("Form", "ê"))
 
 #
+        self.pushButton.clicked.connect(self.login)
         self.pushButton_5.clicked.connect(lambda:Form.close())
+        self.pushButton_2.clicked.connect(lambda: webbrowser.open('https://www.facebook.com/f.hadikhoir'))
+        self.pushButton_3.clicked.connect(lambda: webbrowser.open('https://www.youtube.com/c/HadiKIT'))
+        self.pushButton_4.clicked.connect(lambda: webbrowser.open('https://github.com/HadiKhoirudin/qcdl_factory'))
 #
         
 #
