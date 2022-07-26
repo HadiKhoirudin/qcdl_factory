@@ -10,18 +10,24 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-## { begin import
+# { Import Required Services
 import sys, res, mysql.connector, webbrowser
-##   end import }
+# }
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(625, 565)
-        ## { begin remove background frame 
+
+# { remove background frame 
         Form.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         Form.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-        ##   end remove background frame }
+# }
+
+        self.widget = QtWidgets.QWidget(Form)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/images/picture/QC.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Form.setWindowIcon(icon)
         self.widget = QtWidgets.QWidget(Form)
         self.widget.setGeometry(QtCore.QRect(30, 30, 550, 500))
         self.widget.setStyleSheet("QPushButton#pushButton{\n"
@@ -165,7 +171,7 @@ class Ui_Form(object):
         self.pushButton_4.setObjectName("pushButton_4")
         self.gridLayout.addWidget(self.pushButton_4, 0, 2, 1, 1)
         self.label_6 = QtWidgets.QLabel(self.widget)
-        self.label_6.setGeometry(QtCore.QRect(70, 80, 31, 31))
+        self.label_6.setGeometry(QtCore.QRect(70, 77, 30, 30))
         self.label_6.setStyleSheet("image: url(:/images/picture/QC.ico);")
         self.label_6.setText("")
         self.label_6.setObjectName("label_6")
@@ -186,16 +192,18 @@ class Ui_Form(object):
         self.pushButton_5.setFont(font)
         self.pushButton_5.setObjectName("pushButton_5")
 
-#
+# { Graphic effect
         self.label.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         self.label_3.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         self.pushButton.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=3, yOffset=3))
-#
+# }
+
+        self.retranslateUi(Form)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-# {Add login process
+# { Login process
     def login(self):
         try:
             print("Login .....")
@@ -215,10 +223,11 @@ class Ui_Form(object):
             result = mycursor.fetchone()
 
             if result == None:
-               self.label_5.setText("Incorrect Username or Password")
+               self.label_5.setText("Incorrect Username or Password!")
 
             else:
                 self.label_5.setText("You are logged in")
+#               Form.hide()
 
         except mysql.connector.Error as e:
             self.label_5.setText("Error! Can't connect to server.")
@@ -226,7 +235,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "QCDL FACTORY - V1.0 [HadiK IT]"))
         self.label_4.setText(_translate("Form", "Log In"))
         self.lineEdit.setPlaceholderText(_translate("Form", "User Name"))
         self.lineEdit_2.setPlaceholderText(_translate("Form", "Password"))
@@ -238,20 +247,20 @@ class Ui_Form(object):
         self.label_7.setText(_translate("Form", "QCDL FACTORY"))
         self.pushButton_5.setText(_translate("Form", "ê"))
 
-#
+# { Button clicked function
         self.pushButton.clicked.connect(self.login)
         self.pushButton_5.clicked.connect(lambda:Form.close())
         self.pushButton_2.clicked.connect(lambda: webbrowser.open('https://www.facebook.com/f.hadikhoir'))
         self.pushButton_3.clicked.connect(lambda: webbrowser.open('https://www.youtube.com/c/HadiKIT'))
         self.pushButton_4.clicked.connect(lambda: webbrowser.open('https://github.com/HadiKhoirudin/qcdl_factory'))
-#
-        
-#
+# }
+
+# { Set-up Main app.
 if __name__ == "__main__":
-            app = QtWidgets.QApplication(sys.argv)
-            Form = QtWidgets.QWidget()
-            ui = Ui_Form()
-            ui.setupUi(Form)
-            Form.show()
-            sys.exit(app.exec())
-#
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec())
+# }
